@@ -13,7 +13,24 @@
         .hero { padding: 25px 20px; text-align: center; background: white; border-bottom: 1px solid rgba(196,167,125,0.1); }
         .photo-frame { max-width: 180px; margin: 0 auto 15px; padding: 6px; background: white; border-radius: 90px 90px 5px 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .photo-frame img { width: 100%; border-radius: 85px 85px 3px 3px; display: block; }
-        .couple-names { font-family: 'Pinyon Script', cursive; font-size: 2.8em; margin: 0; }
+        .couple-names { 
+            font-family: 'Pinyon Script', cursive; 
+            font-size: 3.2em; 
+            margin: 0; 
+            line-height: 1.6; /* Este ajuste es el que evita que la 'y' se corte */
+            padding-bottom: 10px;
+            display: block;
+        }
+
+        .welcome-text { 
+            max-width: 550px; 
+            margin: 0 auto; 
+            font-size: 1.15em; 
+            line-height: 1.6em; 
+            font-style: italic; 
+            color: #555;
+            padding: 0 20px;
+        }
         .wedding-date { font-size: 0.85em; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin: 5px 0; }
 
         /* GRILLA DE 2 COLUMNAS EN MÓVIL */
@@ -60,6 +77,9 @@
         </div>
         <h1 class="couple-names">Jordan & Josselyn</h1>
         <p class="wedding-date">03 • Octubre • 2026</p>
+        <p class="welcome-text">
+            Muchas gracias por tu asistencia. A continuación puedes seleccionar uno o más regalos de nuestra lista para acompañarnos en esta nueva etapa.
+        </p>
     </header>
 
     <div id="contenedor-regalos" class="grid"></div>
