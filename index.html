@@ -69,11 +69,9 @@
         <button class="pagar" onclick="abrirDedicatoria()">Confirmar Regalo</button>
     </div>
 
-    <div id="modal-dedicatoria">
+   <div id="modal-dedicatoria">
         <div class="modal-content">
             <h2 style="font-weight: 300; margin: 0 0 10px;">Tu Mensaje</h2>
-            <p style="font-size: 0.85em; margin-bottom: 10px;">Elige el estilo de tu tarjeta:</p>
-            
             <div class="card-selector">
                 <div class="card-option selected" onclick="selectCard(this, 'Olivo')">Olivo</div>
                 <div class="card-option" onclick="selectCard(this, 'Lino')">Lino</div>
@@ -83,11 +81,16 @@
             <input type="text" id="invitado-nombre" placeholder="Tu Nombre">
             <textarea id="invitado-mensaje" placeholder="Tu dedicatoria..."></textarea>
 
-            <button class="pagar" style="width: 100%; margin-top: 15px;" id="btn-final" onclick="procesarPagoFinal()">Ir a Pagar</button>
+            <div id="preview-box" style="background: white; padding: 15px; border: 1px dashed var(--gold); margin: 15px 0; text-align: left;">
+                <p style="font-size: 0.7em; color: var(--gold); text-transform: uppercase; margin: 0;">Vista previa:</p>
+                <h4 id="preview-nombre" style="font-family: 'Pinyon Script'; font-size: 1.8em; margin: 5px 0;">Tu Nombre</h4>
+                <p id="preview-mensaje" style="font-style: italic; font-size: 0.9em; margin: 0;">Tu mensaje aparecerá aquí...</p>
+            </div>
+
+            <button class="pagar" style="width: 100%;" id="btn-final" onclick="procesarPagoFinal()">Ir a Pagar</button>
             <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver</p>
         </div>
     </div>
-
     <script>
         // RECUERDA CAMBIAR ESTA URL POR LA TUYA
         const URL_API = "https://script.google.com/macros/s/AKfycbz1I-usyWZ8B3pZY20u6W8ykTDrlqHms6zbxo06qIICXY942nw9ZtcXPN9uCA41kM3G/exec"; 
@@ -167,6 +170,14 @@
                 btn.innerText = "Ir a Pagar"; btn.disabled = false;
             }
         }
+
+        // Sincronizar vista previa en tiempo real
+        document.getElementById('invitado-nombre').addEventListener('input', (e) => {
+            document.getElementById('preview-nombre').innerText = e.target.value || "Tu Nombre";
+        });
+        document.getElementById('invitado-mensaje').addEventListener('input', (e) => {
+            document.getElementById('preview-mensaje').innerText = e.target.value || "Tu dedicatoria...";
+        });
         cargarRegalos();
     </script>
 </body>
