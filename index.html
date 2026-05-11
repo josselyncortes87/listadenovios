@@ -72,25 +72,23 @@
    <div id="modal-dedicatoria">
         <div class="modal-content">
             <h2 style="font-weight: 300; margin: 0 0 10px;">Tu Tarjeta de Regalo</h2>
-            <p style="font-size: 0.8em; color: #888;">Elige un estilo para la tarjeta virtual:</p>
-            
             <div class="card-selector">
                 <div class="card-option selected" onclick="selectCard(this, 'Olivo')">Olivo</div>
                 <div class="card-option" onclick="selectCard(this, 'Lino')">Lino</div>
                 <div class="card-option" onclick="selectCard(this, 'Dorado')">Dorado</div>
             </div>
 
-            <input type="text" id="invitado-nombre" placeholder="¿De parte de quién? (Ej: Familia Pérez)">
+            <input type="text" id="invitado-nombre" placeholder="¿De parte de quién?">
 
-            <div id="preview-box" style="background: white; padding: 20px; border: 1px solid var(--gold); margin: 20px 0; text-align: center; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+            <div id="preview-box" style="background: white; padding: 20px; border: 1px solid var(--gold); margin: 20px 0; text-align: center; border-radius: 4px;">
                 <p style="font-family: 'Cormorant Garamond'; font-style: italic; color: var(--sage-dark); font-size: 1.4em; margin-bottom: 10px;">¡Muchas Felicidades!</p>
                 <div style="height: 1px; background: var(--gold); width: 40px; margin: 10px auto; opacity: 0.5;"></div>
                 <p style="font-size: 0.7em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">De parte de:</p>
-                <h4 id="preview-nombre" style="font-family: 'Pinyon Script'; font-size: 2.2em; margin: 0; color: var(--text-dark);">Tu Nombre</h4>
+                <h4 id="preview-nombre" style="font-family: 'Pinyon Script'; font-size: 2.2em; margin: 0;">Tu Nombre</h4>
             </div>
 
             <button class="pagar" style="width: 100%;" id="btn-final" onclick="procesarPagoFinal()">Confirmar y Pagar</button>
-            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver a la lista</p>
+            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver</p>
         </div>
     </div>
     <script>
@@ -144,35 +142,31 @@
 
         async function procesarPagoFinal() {
             const nombre = document.getElementById('invitado-nombre').value;
-            if(!nombre) return alert("Por favor, dinos quién envía el regalo para la tarjeta.");
+            if(!nombre) return alert("Por favor, dinos tu nombre para la tarjeta.");
 
             const btn = document.getElementById('btn-final');
-            btn.innerText = "Conectando con Mercado Pago..."; btn.disabled = true;
+            btn.innerText = "Conectando..."; btn.disabled = true;
 
             try {
                 const resp = await fetch(URL_API, {
                     method: 'POST',
-                    body: JSON.stringify({ 
-                        carrito, 
-                        total, 
-                        nombre, 
-                        tarjeta: tarjetaSeleccionada 
-                    })
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ carrito, total, nombre, tarjeta: tarjetaSeleccionada })
                 });
                 const d = await resp.json();
                 if(d.urlPago) {
                     window.location.replace(d.urlPago);
                 } else {
-                    alert("Error: " + JSON.stringify(d.error));
+                    alert("Error MP: " + d.error);
                     btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
                 }
             } catch(e) { 
-                alert("Error de conexión. Intenta de nuevo."); 
+                alert("Error de conexión."); 
                 btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
             }
         }
 
-        // Sincronizar nombre en la vista previa
+        // Listener para la vista previa
         document.getElementById('invitado-nombre').addEventListener('input', (e) => {
             document.getElementById('preview-nombre').innerText = e.target.value || "Tu Nombre";
         });
