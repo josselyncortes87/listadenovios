@@ -144,41 +144,37 @@
 
         async function procesarPagoFinal() {
             const nombre = document.getElementById('invitado-nombre').value;
-            const mensaje = document.getElementById('invitado-mensaje').value;
-            if(!nombre) return alert("Por favor, dinos tu nombre.");
+            if(!nombre) return alert("Por favor, dinos quién envía el regalo para la tarjeta.");
 
             const btn = document.getElementById('btn-final');
-            btn.innerText = "Preparando Pago..."; btn.disabled = true;
+            btn.innerText = "Conectando con Mercado Pago..."; btn.disabled = true;
 
             try {
-                // Enviamos los datos
-                const response = await fetch(URL_API, {
+                const resp = await fetch(URL_API, {
                     method: 'POST',
-                    body: JSON.stringify({ carrito, total, nombre, mensaje, tarjeta: tarjetaSeleccionada })
+                    body: JSON.stringify({ 
+                        carrito, 
+                        total, 
+                        nombre, 
+                        tarjeta: tarjetaSeleccionada 
+                    })
                 });
-
-                if (!response.ok) throw new Error('Error en el servidor');
-
-                const data = await response.json();
-                
-                if (data.urlPago) {
-                    // REDIRECCIÓN FORZADA PARA MÓVILES
-                    window.location.replace(data.urlPago);
+                const d = await resp.json();
+                if(d.urlPago) {
+                    window.location.replace(d.urlPago);
                 } else {
-                    throw new Error('No se recibió link de pago');
+                    alert("Error: " + JSON.stringify(d.error));
+                    btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
                 }
             } catch(e) { 
-                alert("Tuvimos un problema al conectar con el pago. Inténtalo de nuevo."); 
-                btn.innerText = "Ir a Pagar"; btn.disabled = false;
+                alert("Error de conexión. Intenta de nuevo."); 
+                btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
             }
         }
 
-        // Sincronizar vista previa en tiempo real
+        // Sincronizar nombre en la vista previa
         document.getElementById('invitado-nombre').addEventListener('input', (e) => {
             document.getElementById('preview-nombre').innerText = e.target.value || "Tu Nombre";
-        });
-        document.getElementById('invitado-mensaje').addEventListener('input', (e) => {
-            document.getElementById('preview-mensaje').innerText = e.target.value || "Tu dedicatoria...";
         });
         cargarRegalos();
     </script>
