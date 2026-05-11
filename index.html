@@ -125,10 +125,13 @@
                 if(datos.urlPago) {
                     window.location.href = datos.urlPago; 
                 } else {
-                    throw new Error("No se recibió URL de pago");
+                    // AQUÍ ESTÁ LA MAGIA: Nos mostrará el error exacto que manda Mercado Pago o Google
+                    alert("Detalle del error: " + JSON.stringify(datos));
+                    botonPagar.innerText = textoOriginal;
+                    botonPagar.disabled = false;
                 }
             } catch (error) {
-                alert("Hubo un problema al procesar el pago. Por favor intenta de nuevo.");
+                alert("Error de sistema: " + error.message);
                 botonPagar.innerText = textoOriginal;
                 botonPagar.disabled = false;
             }
