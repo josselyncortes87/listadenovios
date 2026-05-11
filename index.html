@@ -3,55 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Lista de Deseos - Jordan & Josselyn</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
+    <title>Jordan & Josselyn - Lista de Deseos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --sage: #8A9A81;
-            --sage-dark: #6B7B62;
-            --cream: #FDFBF8;
-            --text-dark: #3A4735;
-            --gold: #C4A77D;
-        }
-
+        :root { --sage: #8A9A81; --sage-dark: #6B7B62; --cream: #FDFBF8; --text-dark: #3A4735; --gold: #C4A77D; }
         body { font-family: 'Cormorant Garamond', serif; background-color: var(--cream); color: var(--text-dark); margin: 0; padding-bottom: 140px; }
         
-        /* --- HEADER (HERO SECTION) --- */
-        .hero { position: relative; background-color: #fff; padding: 60px 20px; text-align: center; border-bottom: 1px solid rgba(196, 167, 125, 0.2); }
-        
-        .photo-frame { max-width: 600px; margin: 0 auto 40px auto; padding: 15px; background: white; border-radius: 100px 100px 5px 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative;}
-        .photo-frame::before { content: '🌿'; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 2.5em; color: var(--sage); }
-        .photo-frame img { width: 100%; height: auto; border-radius: 90px 90px 5px 5px; object-fit: cover; display: block; }
+        /* HEADER Y FOTO PEQUEÑA */
+        .hero { padding: 40px 20px; text-align: center; background: white; border-bottom: 1px solid rgba(196,167,125,0.2); }
+        .photo-frame { max-width: 380px; margin: 0 auto 25px; padding: 10px; background: white; border-radius: 150px 150px 10px 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .photo-frame img { width: 100%; border-radius: 140px 140px 5px 5px; display: block; }
+        .couple-names { font-family: 'Pinyon Script', cursive; font-size: 3.8em; margin: 0; }
+        .wedding-date { font-size: 1.1em; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin: 10px 0; }
 
-        .couple-names { font-family: 'Pinyon Script', cursive; color: var(--text-dark); font-size: 4.5em; margin: 0; line-height: 1em; }
-        .wedding-date { font-size: 1.3em; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin: 15px 0 5px 0; }
-        .venue-info { font-style: italic; color: #7f8c8d; font-size: 1.1em; margin-bottom: 20px; }
-        .welcome-text { max-width: 600px; margin: 0 auto; font-size: 1.2em; line-height: 1.6em; }
+        /* GRILLA DE REGALOS */
+        .grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; max-width: 1100px; margin: 40px auto; }
+        .card { background: white; border-radius: 8px; width: 260px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(196,167,125,0.15); overflow: hidden; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--sage); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-body h3 { font-size: 1.1em; margin: 0 0 10px; height: 2.2em; overflow: hidden; }
+        .precio { font-size: 1.4em; color: var(--sage-dark); margin-bottom: 15px; }
+        button.agregar { background: none; border: 1px solid var(--sage); color: var(--sage-dark); width: 100%; padding: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8em; }
+        button.agregar:hover { background: var(--sage); color: white; }
 
-        /* --- SECCIÓN DE REGALOS --- */
-        .grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 1200px; margin: auto; padding: 20px;}
-        .card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.04); width: 280px; text-align: left; transition: all 0.3s ease; border: 1px solid rgba(196, 167, 125, 0.1); }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(138, 154, 129, 0.15); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-        .card-body { padding: 25px; }
-        .card-body h3 { margin: 0 0 12px 0; font-size: 1.2em; height: 2.4em; overflow: hidden; }
-        .precio { font-size: 1.5em; font-weight: 400; color: var(--sage-dark); margin-bottom: 20px; }
-        
-        button.agregar { background-color: transparent; color: var(--sage-dark); border: 1px solid var(--sage); padding: 12px; border-radius: 4px; width: 100%; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.2s; }
-        button.agregar:hover { background-color: var(--sage); color: white; }
-        
-        /* --- CARRITO FLOTANTE --- */
-        .carrito-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(253, 251, 248, 0.95); padding: 25px 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; gap: 40px; z-index: 1000; backdrop-filter: blur(5px); border-top: 1px solid rgba(196, 167, 125, 0.2); }
-        .total-monto { font-size: 2.2em; font-weight: 300; color: var(--text-dark); }
-        button.pagar { background-color: var(--sage-dark); color: white; border: none; padding: 18px 50px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; transition: all 0.3s; }
-        button.pagar:hover { background-color: var(--text-dark); transform: scale(1.03); }
+        /* CARRITO FIJO */
+        .carrito-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 20px 0; display: flex; justify-content: center; align-items: center; gap: 30px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); z-index: 100; border-top: 1px solid var(--gold); }
+        .total-monto { font-size: 2em; font-weight: 300; }
+        button.pagar { background: var(--sage-dark); color: white; border: none; padding: 15px 40px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; }
 
-        @media (max-width: 768px) {
-            .couple-names { font-size: 3em; }
-            .carrito-bar { flex-direction: column; gap: 15px; }
-        }
+        /* MODAL DE EXPERIENCIA WOW */
+        #modal-dedicatoria { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(58, 71, 53, 0.85); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-content { background: var(--cream); width: 90%; max-width: 600px; padding: 40px; border-radius: 4px; position: relative; max-height: 90vh; overflow-y: auto; text-align: center; }
+        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5em; }
+        
+        /* Selector de Tarjetas */
+        .card-selector { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+        .card-option { width: 80px; height: 50px; border: 2px solid transparent; cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7em; text-transform: uppercase; transition: 0.2s; }
+        .opt-1 { background: #e8ede5; border-color: #ccd6c7; } /* Sage */
+        .opt-2 { background: #fff; border-color: #f0f0f0; border: 1px solid #ddd; } /* Minimal */
+        .opt-3 { background: #f9f4e8; border-color: var(--gold); color: var(--gold); } /* Gold */
+        .card-option.selected { border-color: var(--sage-dark); transform: scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; font-family: 'Cormorant Garamond'; font-size: 1.1em; box-sizing: border-box; background: white; }
+        textarea { height: 100px; resize: none; }
+        
+        .preview-box { background: white; padding: 20px; border: 1px dashed var(--gold); margin: 20px 0; text-align: left; }
+        .preview-box h4 { margin: 0 0 10px; font-family: 'Pinyon Script'; font-size: 2em; }
+
+        @media (max-width: 600px) { .modal-content { padding: 20px; width: 95%; } }
     </style>
 </head>
 <body>
@@ -62,64 +62,114 @@
         </div>
         <h1 class="couple-names">Jordan & Josselyn</h1>
         <p class="wedding-date">03 • Octubre • 2026</p>
-        <p class="venue-info">Casona Fundo El Rosario</p>
-        <p class="welcome-text">Nuestra mayor alegría es compartir este día con ustedes. Si desean tener un detalle con nosotros, esta es nuestra lista de deseos para nuestro futuro hogar.</p>
+        <p class="welcome-text">Estamos felices de que nos acompañen. Si desean hacernos un regalo, pueden elegirlo a continuación.</p>
     </header>
-    
-    <main class="main-content">
-        <div id="contenedor-regalos" class="grid"></div>
-    </main>
+
+    <div id="contenedor-regalos" class="grid"></div>
 
     <div class="carrito-bar">
-        <div class="total-container">
-            <span class="total-monto">$<span id="total">0</span></span>
+        <div class="total-monto">$<span id="total">0</span></div>
+        <button class="pagar" onclick="abrirDedicatoria()">Personalizar Regalo</button>
+    </div>
+
+    <div id="modal-dedicatoria">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal()">×</span>
+            <h2 style="font-weight: 300; margin-top: 0;">Personaliza tu detalle</h2>
+            <p>Elige un estilo para tu tarjeta virtual:</p>
+            
+            <div class="card-selector">
+                <div class="card-option opt-1 selected" onclick="selectCard(this, 'Toscana Sage')">Olivo</div>
+                <div class="card-option opt-2" onclick="selectCard(this, 'Blanco Minimal')">Lino</div>
+                <div class="card-option opt-3" onclick="selectCard(this, 'Borde Dorado')">Dorado</div>
+            </div>
+
+            <input type="text" id="invitado-nombre" placeholder="¿Quién envía el regalo?">
+            <textarea id="invitado-mensaje" placeholder="Escríbenos una dedicatoria..."></textarea>
+
+            <div class="preview-box">
+                <p style="font-size: 0.8em; color: var(--gold); text-transform: uppercase;">Vista previa de su mensaje:</p>
+                <h4 id="preview-nombre">Tu Nombre</h4>
+                <p id="preview-mensaje" style="font-style: italic;">Tu dedicatoria aparecerá aquí para Jordan y Josselyn...</p>
+            </div>
+
+            <button class="pagar" style="width: 100%;" id="btn-final" onclick="procesarPagoFinal()">Enviar Regalo y Pagar</button>
         </div>
-        <button class="pagar" onclick="irAPagar()">Confirmar Mi Regalo</button>
     </div>
 
     <script>
         const URL_API = "https://script.google.com/macros/s/AKfycbz1I-usyWZ8B3pZY20u6W8ykTDrlqHms6zbxo06qIICXY942nw9ZtcXPN9uCA41kM3G/exec"; 
         let carrito = [];
         let total = 0;
+        let tarjetaSeleccionada = "Toscana Sage";
 
         async function cargarRegalos() {
-            try {
-                const respuesta = await fetch(URL_API);
-                const regalos = await respuesta.json();
-                let html = "";
-                regalos.forEach(regalo => {
-                    if(regalo.Estado === "Visible") {
-                        html += `
-                            <div class="card">
-                                <img src="${regalo.Imagen_URL}" alt="${regalo.Articulo}">
-                                <div class="card-body">
-                                    <h3>${regalo.Articulo}</h3>
-                                    <p class="precio">$${Number(regalo.Precio).toLocaleString('es-CL')}</p>
-                                    <button class="agregar" onclick="agregarAlCarrito('${regalo.Articulo}', ${regalo.Precio})">Añadir regalo</button>
-                                </div>
-                            </div>`;
-                    }
-                });
-                document.getElementById("contenedor-regalos").innerHTML = html;
-            } catch(e) { console.error(e); }
+            const resp = await fetch(URL_API);
+            const regalos = await resp.json();
+            let html = "";
+            regalos.forEach(r => {
+                if(r.Estado === "Visible") {
+                    html += `
+                        <div class="card">
+                            <img src="${r.Imagen_URL}">
+                            <div class="card-body">
+                                <h3>${r.Articulo}</h3>
+                                <p class="precio">$${Number(r.Precio).toLocaleString('es-CL')}</p>
+                                <button class="agregar" onclick="agregarAlCarrito('${r.Articulo}', ${r.Precio})">Añadir regalo</button>
+                            </div>
+                        </div>`;
+                }
+            });
+            document.getElementById("contenedor-regalos").innerHTML = html;
         }
 
         function agregarAlCarrito(nombre, precio) {
-            carrito.push({ nombre, precio, cantidad: 1 });
+            carrito.push({ nombre, precio });
             total += precio;
             document.getElementById("total").innerText = total.toLocaleString('es-CL');
         }
 
-        async function irAPagar() {
-            if(carrito.length === 0) return alert("Selecciona un regalo.");
-            const btn = document.querySelector('.pagar');
-            btn.innerText = "Cargando..."; btn.disabled = true;
-            try {
-                const resp = await fetch(URL_API, { method: 'POST', body: JSON.stringify({ carrito }) });
-                const datos = await resp.json();
-                if(datos.urlPago) window.location.href = datos.urlPago;
-            } catch (e) { alert("Error al conectar."); btn.disabled = false; }
+        function abrirDedicatoria() {
+            if(carrito.length === 0) return alert("Selecciona un regalo primero.");
+            document.getElementById("modal-dedicatoria").style.display = "flex";
         }
+
+        function cerrarModal() { document.getElementById("modal-dedicatoria").style.display = "none"; }
+
+        function selectCard(el, nombre) {
+            document.querySelectorAll('.card-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            tarjetaSeleccionada = nombre;
+        }
+
+        // Sincronizar vista previa
+        document.getElementById('invitado-nombre').addEventListener('input', (e) => {
+            document.getElementById('preview-nombre').innerText = e.target.value || "Tu Nombre";
+        });
+        document.getElementById('invitado-mensaje').addEventListener('input', (e) => {
+            document.getElementById('preview-mensaje').innerText = e.target.value || "Tu dedicatoria...";
+        });
+
+        async function procesarPagoFinal() {
+            const nombre = document.getElementById('invitado-nombre').value;
+            const mensaje = document.getElementById('invitado-mensaje').value;
+            if(!nombre) return alert("Por favor, dinos tu nombre.");
+
+            const btn = document.getElementById('btn-final');
+            btn.innerText = "Preparando tu envío..."; btn.disabled = true;
+
+            try {
+                const resp = await fetch(URL_API, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        carrito, total, nombre, mensaje, tarjeta: tarjetaSeleccionada 
+                    })
+                });
+                const d = await resp.json();
+                if(d.urlPago) window.location.href = d.urlPago;
+            } catch(e) { alert("Error al conectar."); btn.disabled = false; }
+        }
+
         cargarRegalos();
     </script>
 </body>
