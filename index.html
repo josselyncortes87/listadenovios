@@ -9,44 +9,44 @@
         :root { --sage: #8A9A81; --sage-dark: #6B7B62; --cream: #FDFBF8; --text-dark: #3A4735; --gold: #C4A77D; }
         body { font-family: 'Cormorant Garamond', serif; background-color: var(--cream); color: var(--text-dark); margin: 0; padding-bottom: 140px; scroll-behavior: smooth; }
         
-        /* FOTO REDUCIDA Y ELEGANTE */
-        .hero { padding: 30px 20px; text-align: center; background: white; border-bottom: 1px solid rgba(196,167,125,0.1); }
-        .photo-frame { max-width: 220px; margin: 0 auto 15px; padding: 8px; background: white; border-radius: 110px 110px 5px 5px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-        .photo-frame img { width: 100%; border-radius: 105px 105px 3px 3px; display: block; }
-        .couple-names { font-family: 'Pinyon Script', cursive; font-size: 3em; margin: 0; }
-        .wedding-date { font-size: 0.9em; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin: 5px 0; }
+        /* FOTO REDUCIDA (MÁS PEQUEÑA AÚN) */
+        .hero { padding: 25px 20px; text-align: center; background: white; border-bottom: 1px solid rgba(196,167,125,0.1); }
+        .photo-frame { max-width: 180px; margin: 0 auto 15px; padding: 6px; background: white; border-radius: 90px 90px 5px 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .photo-frame img { width: 100%; border-radius: 85px 85px 3px 3px; display: block; }
+        .couple-names { font-family: 'Pinyon Script', cursive; font-size: 2.8em; margin: 0; }
+        .wedding-date { font-size: 0.85em; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin: 5px 0; }
 
         /* GRILLA DE 2 COLUMNAS EN MÓVIL */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 1000px; margin: 30px auto; padding: 0 15px; }
-        .card { background: white; border-radius: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.02); border: 1px solid rgba(196,167,125,0.1); overflow: hidden; display: flex; flex-direction: column; }
-        .card img { width: 100%; height: 140px; object-fit: cover; }
-        .card-body { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-body h3 { font-size: 0.95em; margin: 0 0 8px; height: 2.4em; overflow: hidden; line-height: 1.2; }
-        .precio { font-size: 1.1em; color: var(--sage-dark); font-weight: 600; margin-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 1000px; margin: 25px auto; padding: 0 12px; }
+        .card { background: white; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid rgba(196,167,125,0.1); overflow: hidden; display: flex; flex-direction: column; }
+        .card img { width: 100%; height: 130px; object-fit: cover; }
+        .card-body { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-body h3 { font-size: 0.9em; margin: 0 0 6px; height: 2.4em; overflow: hidden; line-height: 1.2; font-weight: 600; }
+        .precio { font-size: 1.05em; color: var(--sage-dark); font-weight: 600; margin-bottom: 8px; }
         
-        button.agregar { background: none; border: 1px solid var(--sage); color: var(--sage-dark); width: 100%; padding: 8px; cursor: pointer; text-transform: uppercase; font-size: 0.7em; letter-spacing: 1px; transition: 0.2s; }
+        button.agregar { background: none; border: 1px solid var(--sage); color: var(--sage-dark); width: 100%; padding: 7px; cursor: pointer; text-transform: uppercase; font-size: 0.65em; letter-spacing: 1px; }
         button.agregar:hover { background: var(--sage); color: white; }
 
-        /* CARRITO FIJO */
-        .carrito-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px 0; display: flex; justify-content: center; align-items: center; gap: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 100; }
-        .total-monto { font-size: 1.5em; font-weight: 400; }
-        button.pagar { background: var(--sage-dark); color: white; border: none; padding: 12px 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; font-size: 0.9em; }
+        /* CARRITO Y VOLVER ARRIBA */
+        .carrito-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px 0; display: flex; justify-content: center; align-items: center; gap: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 100; border-top: 1px solid rgba(196,167,125,0.2); }
+        .total-monto { font-size: 1.4em; font-weight: 400; }
+        button.pagar { background: var(--sage-dark); color: white; border: none; padding: 12px 25px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; font-size: 0.85em; }
 
-        /* BOTÓN VOLVER ARRIBA */
-        .btn-top { position: fixed; bottom: 85px; right: 20px; background: white; border: 1px solid var(--gold); color: var(--gold); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 90; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-decoration: none; font-size: 1.2em; }
+        .btn-top { position: fixed; bottom: 80px; right: 20px; background: white; border: 1px solid var(--gold); color: var(--gold); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 90; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-decoration: none; font-size: 1em; }
 
         /* MODAL */
         #modal-dedicatoria { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(58, 71, 53, 0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-content { background: var(--cream); width: 90%; max-width: 500px; padding: 30px; border-radius: 4px; position: relative; text-align: center; box-sizing: border-box; }
+        .modal-content { background: var(--cream); width: 90%; max-width: 450px; padding: 25px; border-radius: 4px; position: relative; text-align: center; box-sizing: border-box; }
         .card-selector { display: flex; gap: 8px; justify-content: center; margin: 15px 0; }
-        .card-option { padding: 8px 12px; border: 1px solid #ddd; cursor: pointer; border-radius: 4px; font-size: 0.75em; text-transform: uppercase; background: white; }
+        .card-option { padding: 6px 10px; border: 1px solid #ddd; cursor: pointer; border-radius: 4px; font-size: 0.7em; text-transform: uppercase; background: white; }
         .card-option.selected { border-color: var(--sage-dark); background: var(--sage); color: white; }
         input, textarea { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; font-family: 'Cormorant Garamond'; font-size: 1em; box-sizing: border-box; }
         
         @media (min-width: 768px) {
-            .grid { grid-template-columns: repeat(3, 1fr); }
+            .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
             .card img { height: 180px; }
-            .couple-names { font-size: 4em; }
+            .photo-frame { max-width: 200px; }
+            .couple-names { font-size: 3.5em; }
         }
     </style>
 </head>
@@ -54,7 +54,7 @@
 
     <a href="#" class="btn-top">↑</a>
 
-    <header class="hero">
+    <header class="hero" id="inicio">
         <div class="photo-frame">
             <img src="https://drive.google.com/thumbnail?id=1nHY-TiHU5bo9knGZWpPQhpLRUcHNo0my&sz=w1000" alt="Jordan & Josselyn">
         </div>
@@ -72,7 +72,7 @@
     <div id="modal-dedicatoria">
         <div class="modal-content">
             <h2 style="font-weight: 300; margin: 0 0 10px;">Tu Mensaje</h2>
-            <p style="font-size: 0.9em; margin-bottom: 10px;">Elige el diseño de tu tarjeta:</p>
+            <p style="font-size: 0.85em; margin-bottom: 10px;">Elige el estilo de tu tarjeta:</p>
             
             <div class="card-selector">
                 <div class="card-option selected" onclick="selectCard(this, 'Olivo')">Olivo</div>
@@ -81,15 +81,17 @@
             </div>
 
             <input type="text" id="invitado-nombre" placeholder="Tu Nombre">
-            <textarea id="invitado-mensaje" placeholder="Tu dedicatoria para nosotros..."></textarea>
+            <textarea id="invitado-mensaje" placeholder="Tu dedicatoria..."></textarea>
 
             <button class="pagar" style="width: 100%; margin-top: 15px;" id="btn-final" onclick="procesarPagoFinal()">Ir a Pagar</button>
-            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver a la lista</p>
+            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver</p>
         </div>
     </div>
 
     <script>
+        // RECUERDA CAMBIAR ESTA URL POR LA TUYA
         const URL_API = "https://script.google.com/macros/s/AKfycbz1I-usyWZ8B3pZY20u6W8ykTDrlqHms6zbxo06qIICXY942nw9ZtcXPN9uCA41kM3G/exec"; 
+        
         let carrito = [];
         let total = 0;
         let tarjetaSeleccionada = "Olivo";
@@ -112,7 +114,7 @@
                             </div>`;
                     }
                 });
-                document.getElementById("contenedor-regalos").innerHTML = html;
+                document.getElementById("contenedor-regalos").innerHTML = html || "<p>Pronto tendremos novedades.</p>";
             } catch(e) { console.error("Error cargando lista"); }
         }
 
@@ -138,25 +140,30 @@
         async function procesarPagoFinal() {
             const nombre = document.getElementById('invitado-nombre').value;
             const mensaje = document.getElementById('invitado-mensaje').value;
-            if(!nombre) return alert("Por favor, dinos quién envía el regalo.");
+            if(!nombre) return alert("Por favor, dinos tu nombre.");
 
             const btn = document.getElementById('btn-final');
-            btn.innerText = "Conectando con Mercado Pago..."; btn.disabled = true;
+            btn.innerText = "Preparando Pago..."; btn.disabled = true;
 
             try {
-                const resp = await fetch(URL_API, {
+                // Enviamos los datos
+                const response = await fetch(URL_API, {
                     method: 'POST',
                     body: JSON.stringify({ carrito, total, nombre, mensaje, tarjeta: tarjetaSeleccionada })
                 });
-                const d = await resp.json();
-                if(d.urlPago) {
-                    window.location.href = d.urlPago;
+
+                if (!response.ok) throw new Error('Error en el servidor');
+
+                const data = await response.json();
+                
+                if (data.urlPago) {
+                    // REDIRECCIÓN FORZADA PARA MÓVILES
+                    window.location.replace(data.urlPago);
                 } else {
-                    alert("Error al generar link: " + (d.error || "desconocido"));
-                    btn.innerText = "Ir a Pagar"; btn.disabled = false;
+                    throw new Error('No se recibió link de pago');
                 }
             } catch(e) { 
-                alert("Error de conexión."); 
+                alert("Tuvimos un problema al conectar con el pago. Inténtalo de nuevo."); 
                 btn.innerText = "Ir a Pagar"; btn.disabled = false;
             }
         }
