@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan & Josselyn - Lista de Novios</title>
+    <title>Josselyn & Jordán - Lista de Novios</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         :root { --sage: #8A9A81; --sage-dark: #6B7B62; --cream: #FDFBF8; --text-dark: #3A4735; --gold: #C4A77D; }
@@ -186,20 +186,18 @@
 
         function abrirDedicatoria() {
             if(carrito.length === 0) return alert("Selecciona un regalo primero.");
+            // Esta línea nueva inyecta el total en el modal antes de abrirlo
+            document.getElementById("modal-total-monto").innerText = total.toLocaleString('es-CL');
             document.getElementById("modal-dedicatoria").style.display = "flex";
         }
 
         function cerrarModal() { document.getElementById("modal-dedicatoria").style.display = "none"; }
 
-        function selectCard(el, nombre) {
-            document.querySelectorAll('.card-option').forEach(opt => opt.classList.remove('selected'));
-            el.classList.add('selected');
-            tarjetaSeleccionada = nombre;
-        }
+        // Puedes borrar la función selectCard(el, nombre) si aún la tienes, ya no la usamos.
 
         async function procesarPagoFinal() {
             const nombre = document.getElementById('invitado-nombre').value;
-            if(!nombre) return alert("Por favor, dinos tu nombre para la tarjeta.");
+            if(!nombre) return alert("Por favor, dinos quién envía el regalo.");
 
             const btn = document.getElementById('btn-final');
             btn.innerText = "Conectando..."; btn.disabled = true;
@@ -208,21 +206,27 @@
                 const resp = await fetch(URL_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({ carrito, total, nombre, tarjeta: tarjetaSeleccionada })
+                    body: JSON.stringify({ 
+                        carrito: carrito, 
+                        total: total, 
+                        nombre: nombre, 
+                        tarjeta: "Diseño Único" // Enviamos un valor fijo para no romper tu Excel
+                    })
                 });
+                
                 const d = await resp.json();
+                
                 if(d.urlPago) {
                     window.location.replace(d.urlPago);
                 } else {
-                    alert("Error MP: " + d.error);
+                    alert("Detalle del error técnico: " + (d.error || "No se recibió respuesta"));
                     btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
                 }
             } catch(e) { 
-                alert("Error de conexión."); 
+                alert("Error de conexión con el servidor."); 
                 btn.innerText = "Confirmar y Pagar"; btn.disabled = false;
             }
         }
-
         // Listener para la vista previa
         document.getElementById('invitado-nombre').addEventListener('input', (e) => {
             document.getElementById('preview-nombre').innerText = e.target.value || "Tu Nombre";
