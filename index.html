@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         :root { --sage: #8A9A81; --sage-dark: #6B7B62; --cream: #FDFBF8; --text-dark: #3A4735; --gold: #C4A77D; }
-        body { font-family: 'Cormorant Garamond', serif; background-color: var(--cream); color: var(--text-dark); margin: 0; padding-bottom: 140px; scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Cormorant Garamond', serif; background-color: var(--cream); color: var(--text-dark); margin: 0; padding-bottom: 140px; }
         
         /* FOTO REDUCIDA (MÁS PEQUEÑA AÚN) */
         .hero { padding: 25px 20px; text-align: center; background: white; border-bottom: 1px solid rgba(196,167,125,0.1); }
@@ -73,9 +74,9 @@
 
     <header class="hero" id="inicio">
         <div class="photo-frame">
-            <img src="https://drive.google.com/thumbnail?id=1nHY-TiHU5bo9knGZWpPQhpLRUcHNo0my&sz=w1000" alt="Jordán & Josselyn">
+            <img src="https://drive.google.com/thumbnail?id=1nHY-TiHU5bo9knGZWpPQhpLRUcHNo0my&sz=w1000" alt="Josselyn & Jordán">
         </div>
-        <h1 class="couple-names">Jordán y Josselyn</h1>
+        <h1 class="couple-names">Josselyn y Jordán</h1>
         <p class="wedding-date">03 • Octubre • 2026</p>
         <p class="welcome-text">
             Muchas gracias por tu asistencia. A continuación encontrarás nuestra lista de regalos.
@@ -103,24 +104,23 @@
 
    <div id="modal-dedicatoria">
         <div class="modal-content">
-            <h2 style="font-weight: 300; margin: 0 0 10px;">Tu Tarjeta de Regalo</h2>
-            <div class="card-selector">
-                <div class="card-option selected" onclick="selectCard(this, 'Olivo')">Olivo</div>
-                <div class="card-option" onclick="selectCard(this, 'Lino')">Lino</div>
-                <div class="card-option" onclick="selectCard(this, 'Dorado')">Dorado</div>
-            </div>
+            <h2 style="font-weight: 300; margin: 0 0 15px;">Tu Tarjeta de Regalo</h2>
 
-            <input type="text" id="invitado-nombre" placeholder="¿De parte de quién?">
+            <input type="text" id="invitado-nombre" placeholder="¿De parte de quién? (Ej: Familia Barriga)">
 
-            <div id="preview-box" style="background: white; padding: 20px; border: 1px solid var(--gold); margin: 20px 0; text-align: center; border-radius: 4px;">
+            <div id="preview-box" style="background: white; padding: 20px; border: 1px solid var(--gold); margin: 20px 0; text-align: center; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
                 <p style="font-family: 'Cormorant Garamond'; font-style: italic; color: var(--sage-dark); font-size: 1.4em; margin-bottom: 10px;">¡Muchas Felicidades!</p>
                 <div style="height: 1px; background: var(--gold); width: 40px; margin: 10px auto; opacity: 0.5;"></div>
                 <p style="font-size: 0.7em; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">De parte de:</p>
-                <h4 id="preview-nombre" style="font-family: 'Pinyon Script'; font-size: 2.2em; margin: 0;">Tu Nombre</h4>
+                <h4 id="preview-nombre" style="font-family: 'Pinyon Script'; font-size: 2.2em; margin: 0; color: var(--text-dark);">Tu Nombre</h4>
+            </div>
+
+            <div style="font-size: 1.2em; color: var(--sage-dark); margin-bottom: 15px; font-weight: 600;">
+                Total a pagar: $<span id="modal-total-monto">0</span>
             </div>
 
             <button class="pagar" style="width: 100%;" id="btn-final" onclick="procesarPagoFinal()">Confirmar y Pagar</button>
-            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver</p>
+            <p onclick="cerrarModal()" style="margin-top: 15px; cursor: pointer; font-size: 0.8em; text-decoration: underline;">Volver a la lista</p>
         </div>
     </div>
     <script>
