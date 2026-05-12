@@ -69,23 +69,35 @@
 </head>
 <body>
 
-    <a href="#" class="btn-top">↑</a>
+    <a href="#seccion-filtros" class="btn-top">↑</a>
 
     <header class="hero" id="inicio">
         <div class="photo-frame">
-            <img src="https://drive.google.com/thumbnail?id=1nHY-TiHU5bo9knGZWpPQhpLRUcHNo0my&sz=w1000" alt="Jordán y Josselyn">
+            <img src="https://drive.google.com/thumbnail?id=1nHY-TiHU5bo9knGZWpPQhpLRUcHNo0my&sz=w1000" alt="Jordán & Josselyn">
         </div>
         <h1 class="couple-names">Jordán y Josselyn</h1>
         <p class="wedding-date">03 • Octubre • 2026</p>
         <p class="welcome-text">
-            Muchas gracias por tu asistencia. A continuación puedes seleccionar uno o más regalos de nuestra lista para acompañarnos en esta nueva etapa.
+            Muchas gracias por tu asistencia. A continuación encontrarás nuestra lista de regalos.
         </p>
     </header>
+
+    <div id="seccion-filtros" style="text-align: center; margin: 20px auto; max-width: 1000px; padding: 10px 15px;">
+        <select id="ordenar-regalos" onchange="mostrarRegalos()" style="padding: 8px 15px; border: 1px solid var(--sage); color: var(--sage-dark); border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1.1em; background: white; cursor: pointer; outline: none;">
+            <option value="defecto">Ordenar lista por...</option>
+            <option value="menor-mayor">Precio: Menor a Mayor</option>
+            <option value="mayor-menor">Precio: Mayor a Menor</option>
+            <option value="az">Alfabéticamente (A - Z)</option>
+        </select>
+    </div>
 
     <div id="contenedor-regalos" class="grid"></div>
 
     <div class="carrito-bar">
-        <div class="total-monto">$<span id="total">0</span></div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div class="total-monto">$<span id="total">0</span></div>
+            <span id="btn-vaciar" onclick="vaciarCarrito()" style="cursor: pointer; display: none; font-size: 1.4em; title: Vaciar selección;">🗑️</span>
+        </div>
         <button class="pagar" onclick="abrirDedicatoria()">Confirmar Regalo</button>
     </div>
 
@@ -118,33 +130,58 @@
         let carrito = [];
         let total = 0;
         let tarjetaSeleccionada = "Olivo";
+        let todosLosRegalos = []; // Guardamos la lista original para poder ordenarla
 
         async function cargarRegalos() {
             try {
                 const resp = await fetch(URL_API);
                 const regalos = await resp.json();
-                let html = "";
-                regalos.forEach(r => {
-                    if(r.Estado === "Visible") {
-                        html += `
-                            <div class="card">
-                                <img src="${r.Imagen_URL}">
-                                <div class="card-body">
-                                    <h3>${r.Articulo}</h3>
-                                    <p class="precio">$${Number(r.Precio).toLocaleString('es-CL')}</p>
-                                    <button class="agregar" onclick="agregarAlCarrito('${r.Articulo}', ${r.Precio})">Añadir regalo</button>
-                                </div>
-                            </div>`;
-                    }
-                });
-                document.getElementById("contenedor-regalos").innerHTML = html || "<p>Pronto tendremos novedades.</p>";
+                // Filtramos solo los visibles y los guardamos
+                todosLosRegalos = regalos.filter(r => r.Estado === "Visible");
+                mostrarRegalos();
             } catch(e) { console.error("Error cargando lista"); }
+        }
+
+        function mostrarRegalos() {
+            const orden = document.getElementById("ordenar-regalos").value;
+            let lista = [...todosLosRegalos]; // Clonamos la lista para no perder la original
+
+            // Aplicamos el ordenamiento seleccionado
+            if (orden === "menor-mayor") lista.sort((a, b) => Number(a.Precio) - Number(b.Precio));
+            if (orden === "mayor-menor") lista.sort((a, b) => Number(b.Precio) - Number(a.Precio));
+            if (orden === "az") lista.sort((a, b) => a.Articulo.localeCompare(b.Articulo));
+
+            let html = "";
+            lista.forEach(r => {
+                html += `
+                    <div class="card">
+                        <img src="${r.Imagen_URL}">
+                        <div class="card-body">
+                            <h3>${r.Articulo}</h3>
+                            <p class="precio">$${Number(r.Precio).toLocaleString('es-CL')}</p>
+                            <button class="agregar" onclick="agregarAlCarrito('${r.Articulo}', ${r.Precio})">Añadir</button>
+                        </div>
+                    </div>`;
+            });
+            document.getElementById("contenedor-regalos").innerHTML = html || "<p>Pronto tendremos novedades.</p>";
         }
 
         function agregarAlCarrito(nombre, precio) {
             carrito.push({ nombre, precio });
             total += precio;
+            actualizarInterfazCarrito();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            total = 0;
+            actualizarInterfazCarrito();
+        }
+
+        function actualizarInterfazCarrito() {
             document.getElementById("total").innerText = total.toLocaleString('es-CL');
+            // Si hay cosas en el carrito, mostramos el basurero
+            document.getElementById("btn-vaciar").style.display = carrito.length > 0 ? "inline-block" : "none";
         }
 
         function abrirDedicatoria() {
